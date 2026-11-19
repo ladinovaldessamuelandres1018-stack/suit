@@ -551,3 +551,57 @@ canvas {
 .footer-note {
   color: var(--accent-cyan);
 }
+
+
+/* Mejora visual de tarjetas y elementos interactivos */
+.card,
+.test-runner-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover,
+.test-runner-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+}
+
+.btn {
+  border-radius: 10px;
+  letter-spacing: 0.02em;
+}
+
+.btn-primary,
+.btn-success {
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.btn-primary:hover,
+.btn-success:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.12);
+}
+
+input[type="number"],
+input[type="text"] {
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+}
+
+.result-box,
+.solver-output {
+  border-radius: 10px;
+  line-height: 1.8;
+}
+
+.nav-tab {
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.nav-tab:hover {
+  background-color: rgba(6, 182, 212, 0.08);
+}
+
+.card,
+.test-runner-card {
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
