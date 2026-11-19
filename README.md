@@ -1,47 +1,133 @@
-# Suite Matematica y Algoritmica (Proyecto Integrador)
 
-Evaluacion practica de logica computacional, algebra y precision numerica.
-Proyecto integrador para trabajo en casa con control de versiones en GitHub y despliegue en GitHub Pages.
+# 🧮 Suite Matemática y Algorítmica
 
-## 1. Modulos del Proyecto
-- Modulo A: Retos Logicos BairesDev (probabilidad de dados, torneos, divisores O(1), logistica).
-- Modulo B: Motor Cuadratico & Graficador Canvas (ax^2 + bx + c = 0, raices, vertice y grafica).
-- Modulo C: Detector de Secuencias (patrones aritmeticos, geometricos y de segundo orden).
-- Modulo D: Suite de Autoevaluacion (10 pruebas unitarias en el navegador).
+![Build](https://img.shields.io/badge/build-passing-brightgreen)
+![HTML5](https://img.shields.io/badge/HTML5-orange)
+![CSS3](https://img.shields.io/badge/CSS3-blue)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow)
 
-## 2. Estructura de Archivos
-- index.html: Interfaz con pestañas.
-- css/style.css: Estilos responsivos.
-- js/app.js: Coordinador principal de eventos y canvas.
-- js/modules/bairesdev.js: Retos logicos.
-- js/modules/cuadratica.js: Solucionador cuadratico estable.
-- js/modules/secuencias.js: Detector de secuencias.
-- js/modules/test-suite.js: Suite de 10 pruebas unitarias.
+Aplicación web interactiva desarrollada como proyecto integrador para resolver retos matemáticos y lógicos mediante programación, utilizando HTML5, CSS3 y JavaScript.
 
-## 3. Ejecucion Local
-Ejecutar un servidor local HTTP:
+## 🎯 Objetivo del proyecto
+
+Desarrollar una suite de herramientas matemáticas que permita resolver problemas de lógica, ecuaciones cuadráticas y sucesiones numéricas, incorporando validaciones, precisión numérica y pruebas automatizadas.
+
+## 🚀 Módulos del proyecto
+
+### Módulo A: Simulador BairesDev
+- Probabilidad de dos dados.
+- Cálculo de partidos en torneos.
+- Conteo de múltiplos y divisores.
+- Cálculo de viajes mínimos de logística.
+
+### Módulo B: Motor Cuadrático
+- Resolución de ecuaciones de segundo grado.
+- Identificación de raíces reales y complejas.
+- Cálculo del discriminante y vértice.
+- Representación gráfica de parábolas mediante Canvas.
+
+### Módulo C: Detector de Secuencias
+- Sucesiones aritméticas.
+- Sucesiones geométricas.
+- Sucesiones de segundo orden.
+- Detección de patrones duales.
+- Predicción del siguiente término.
+
+### Módulo D: Suite de Autoevaluación
+- Ejecución de 10 pruebas automatizadas.
+- Identificación de resultados PASS y FAIL.
+- Verificación de casos especiales.
+- Control de errores y precisión numérica.
+
+## 🏗️ Arquitectura del proyecto
+
+El proyecto utiliza una arquitectura modular para separar la interfaz visual de la lógica matemática.
+
+```text
+PROYECTO-WEB/
+│
+├── index.html
+│
+├── css/
+│   └── style.css
+│
+├── js/
+│   ├── app.js
+│   │
+│   └── modules/
+│       ├── bairesdev.js
+│       ├── cuadratica.js
+│       ├── secuencias.js
+│       └── test-suite.js
+│
+└── README.md
+```
+
+### Tecnologías utilizadas
+- HTML5: estructura de la aplicación.
+- CSS3: diseño visual y adaptación a diferentes pantallas.
+- JavaScript ES6+: lógica, cálculos y validaciones.
+- Canvas: representación gráfica de las parábolas.
+- Git y GitHub: control de versiones y almacenamiento del proyecto.
+
+## ⚙️ Instalación y ejecución local
+
+1. Descargar o clonar el repositorio.
+2. Abrir la carpeta del proyecto.
+3. Iniciar un servidor HTTP local.
+
+Comando:
+
 ```bash
 python3 -m http.server 8000
 ```
-Abrir http://localhost:8000 en el navegador.
 
-## 4. Desafios de Precision Numerica (Cascaritas)
-1. Cancelacion Catastrofica: Usar formula de Citardauq / Muller cuando b^2 >> 4ac.
-2. Caso Degenerado: Manejar a = 0 como ecuacion lineal sin dividir entre cero.
-3. Precision Flotante IEEE-754: Usar tolerancia Number.EPSILON para comparar porcentajes.
+4. Abrir el navegador en:
 
-## 5. Requisitos de Git y GitHub
-- Minimo 10 commits significativos con Conventional Commits (feat, fix, style, test, docs).
-- Trabajo con ramas y Pull Requests.
-- Despliegue activo en GitHub Pages.
+```text
+http://localhost:8000
+```
 
-## 6. Rubrica (100 Puntos)
-- Logica y Matematicas: 25 pts
-- Superacion de Casos Borde: 25 pts
-- Gestion de Git y Commits: 20 pts
-- Despliegue y UX/UI: 15 pts
-- Sustentacion Presencial: 15 pts
+## 📊 Análisis de complejidad algorítmica
 
-## 7. Objetivo del Proyecto
+| Algoritmo | Tiempo | Espacio |
+|---|---|---|
+| Probabilidad de dados | O(1) | O(1) |
+| Partidos de torneo | O(1) | O(1) |
+| Conteo de múltiplos | O(1) | O(1) |
+| Viajes mínimos | O(1) | O(1) |
+| Ecuación cuadrática | O(1) | O(1) |
+| Análisis de secuencias | O(n) | O(n) |
+| Pruebas automatizadas | O(t) | O(t) |
 
-El objetivo de este proyecto es desarrollar una aplicación web que permita resolver diferentes retos matemáticos y lógicos de manera interactiva. A través de sus módulos se busca aplicar conocimientos de programación, mejorar la capacidad de resolver problemas y fortalecer el manejo de JavaScript y el desarrollo web.
+Donde:
+- n representa la cantidad de términos de una secuencia.
+- t representa la cantidad de pruebas ejecutadas.
+
+## 🧠 Precisión numérica y casos especiales
+
+El proyecto contempla situaciones especiales para mejorar la confiabilidad de los resultados:
+
+1. Cancelación catastrófica: uso de la fórmula estable de Citardauq para calcular raíces cuadráticas.
+2. Ecuaciones degeneradas: validación cuando el coeficiente a es igual a cero.
+3. Precisión IEEE-754: uso de tolerancias numéricas para comparar resultados decimales.
+
+## 🔀 Control de versiones
+
+El proyecto utiliza GitHub para registrar los avances mediante commits organizados con la convención Conventional Commits:
+
+- feat: nuevas funcionalidades.
+- fix: correcciones de errores.
+- style: mejoras visuales.
+- test: pruebas automatizadas.
+- docs: documentación.
+
+## 📌 Autor
+
+Proyecto académico individual.
+
+Desarrollado como práctica de lógica computacional, matemáticas y desarrollo web.
+
+---
+
+**Suite Matemática y Algorítmica - Proyecto Integrador Web.**
