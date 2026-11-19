@@ -1,24 +1,37 @@
-/**
- * Modulo A: Retos Logicos BairesDev
- * Funciones para simulacion de problemas de combinatoria, divisibilidad y logistica.
- */
 
 /**
- * Reto 1: Probabilidad de suma de 2 dados
- * @param {number} sumaObjetivo - Suma a evaluar (2 a 12)
- * @returns {{ casosFavorables: number, casosTotales: number, probabilidad: number, porcentaje: string }}
+ * Modulo A: Retos Logicos BairesDev
+ * Funciones para resolver problemas matematicos,
+ * combinatoria, divisibilidad y logistica.
+ */
+
+// Validacion general de numeros enteros
+function validarEntero(numero, nombre, minimo) {
+  if (!Number.isFinite(numero) || !Number.isInteger(numero)) {
+    throw new Error(`${nombre} debe ser un numero entero valido.`);
+  }
+
+  if (numero < minimo) {
+    throw new Error(`${nombre} debe ser mayor o igual a ${minimo}.`);
+  }
+}
+
+/**
+ * Reto 1: Probabilidad de suma de dos dados
  */
 export function calcularProbabilidadDados(sumaObjetivo) {
-  if (sumaObjetivo < 2 || sumaObjetivo > 12) {
-    throw new Error("La suma objetivo en dos dados debe estar entre 2 y 12.");
+  validarEntero(sumaObjetivo, "La suma", 2);
+
+  if (sumaObjetivo > 12) {
+    throw new Error("La suma debe estar entre 2 y 12.");
   }
 
   let casosFavorables = 0;
-  const casosTotales = 36; // 6 * 6
+  const casosTotales = 36;
 
-  for (let d1 = 1; d1 <= 6; d1++) {
-    for (let d2 = 1; d2 <= 6; d2++) {
-      if (d1 + d2 === sumaObjetivo) {
+  for (let dado1 = 1; dado1 <= 6; dado1++) {
+    for (let dado2 = 1; dado2 <= 6; dado2++) {
+      if (dado1 + dado2 === sumaObjetivo) {
         casosFavorables++;
       }
     }
@@ -36,40 +49,33 @@ export function calcularProbabilidadDados(sumaObjetivo) {
 }
 
 /**
- * Reto 2: Total de partidos de un torneo round-robin
+ * Reto 2: Partidos de un torneo
  * Formula: C(n, 2) = n * (n - 1) / 2
- * @param {number} n - Cantidad de equipos (n >= 2)
- * @returns {number}
  */
 export function calcularPartidosTorneo(n) {
-  if (n < 2) {
-    throw new Error("Se requieren al menos 2 equipos para jugar un torneo.");
-  }
+  validarEntero(n, "La cantidad de equipos", 2);
+
   return (n * (n - 1)) / 2;
 }
 
 /**
- * Reto 3: Multiplos estrictamente menores a un limite en tiempo O(1)
- * @param {number} limite - Limite superior (ej: 904)
- * @param {number} divisor - Divisor entero positivo (ej: 3)
- * @returns {number}
+ * Reto 3: Contar multiplos menores al limite
+ * Complejidad temporal: O(1)
  */
 export function contarMultiplosMenores(limite, divisor) {
-  if (limite <= 1 || divisor <= 0) return 0;
-  // Menores estrictos: [1, limite - 1]
+  validarEntero(limite, "El limite", 1);
+  validarEntero(divisor, "El divisor", 1);
+
   return Math.floor((limite - 1) / divisor);
 }
 
 /**
- * Reto 4: Minimo de viajes segun capacidad (Funcion Techo / Ceil)
- * @param {number} totalItems - Cantidad total de elementos a trasladar
- * @param {number} capacidadPorViaje - Capacidad maxima por viaje
- * @returns {number}
+ * Reto 4: Calcular viajes minimos
+ * Se utiliza Math.ceil para completar todos los viajes.
  */
 export function calcularViajesMinimos(totalItems, capacidadPorViaje) {
-  if (totalItems <= 0) return 0;
-  if (capacidadPorViaje <= 0) {
-    throw new Error("La capacidad por viaje debe ser mayor a 0.");
-  }
+  validarEntero(totalItems, "El total de elementos", 0);
+  validarEntero(capacidadPorViaje, "La capacidad", 1);
+
   return Math.ceil(totalItems / capacidadPorViaje);
 }
