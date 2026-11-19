@@ -37,6 +37,30 @@ function initTabs() {
   });
 }
 
+
+// Validar que los datos ingresados sean números correctos
+function obtenerNumero(input, nombre, opciones = {}) {
+  if (!input || input.value.trim() === "") {
+    throw new Error(`El campo ${nombre} no puede estar vacío.`);
+  }
+
+  const numero = Number(input.value);
+
+  if (!Number.isFinite(numero)) {
+    throw new Error(`El campo ${nombre} debe contener un número válido.`);
+  }
+
+  if (opciones.entero && !Number.isInteger(numero)) {
+    throw new Error(`El campo ${nombre} debe ser un número entero.`);
+  }
+
+  if (opciones.minimo !== undefined && numero < opciones.minimo) {
+    throw new Error(`El campo ${nombre} debe ser mayor o igual a ${opciones.minimo}.`);
+  }
+
+  return numero;
+}
+
 /* -------------------------------------------------------------
    MODULO A: SIMULADOR BAIRESDEV
 ------------------------------------------------------------- */
@@ -48,7 +72,7 @@ function initModuloA() {
 
   btnDados?.addEventListener("click", () => {
     try {
-      const suma = parseInt(inputDados.value, 10);
+      const suma = obtenerNumero(inputDados, "la suma", { entero: true, minimo: 2 });
       const res = calcularProbabilidadDados(suma);
       resDados.innerHTML = `Suma Objetivo: <strong>${suma}</strong><br>` +
                            `Casos Favorables: <strong>${res.casosFavorables} / ${res.casosTotales}</strong><br>` +
@@ -66,7 +90,7 @@ function initModuloA() {
 
   btnTorneo?.addEventListener("click", () => {
     try {
-      const n = parseInt(inputTorneo.value, 10);
+      const n = obtenerNumero(inputTorneo, "los equipos", { entero: true, minimo: 2 });
       const partidos = calcularPartidosTorneo(n);
       resTorneo.innerHTML = `Equipos participantes: <strong>${n}</strong><br>` +
                             `Partidos Totales C(${n}, 2): <strong>${partidos} partidos</strong>`;
@@ -83,8 +107,8 @@ function initModuloA() {
 
   btnDiv?.addEventListener("click", () => {
     try {
-      const lim = parseInt(inputLimite.value, 10);
-      const div = parseInt(inputDivisor.value, 10);
+      const lim = obtenerNumero(inputLimite, "el límite", { entero: true, minimo: 1 });
+      const div = obtenerNumero(inputDivisor, "el divisor", { entero: true, minimo: 1 });
       const cant = contarMultiplosMenores(lim, div);
       resDiv.innerHTML = `Enteros en el rango [1, ${lim - 1}] divisibles por ${div}:<br>` +
                          `Total: <strong>${cant} números</strong> (Calculado en tiempo O(1))`;
@@ -101,8 +125,8 @@ function initModuloA() {
 
   btnBotellas?.addEventListener("click", () => {
     try {
-      const tot = parseInt(inputTotal.value, 10);
-      const cap = parseInt(inputCap.value, 10);
+      const tot = obtenerNumero(inputTotal, "las botellas", { entero: true, minimo: 0 });
+      const cap = obtenerNumero(inputCap, "la capacidad", { entero: true, minimo: 1 });
       const viajes = calcularViajesMinimos(tot, cap);
       resBotellas.innerHTML = `Botellas totales: <strong>${tot}</strong> (Capacidad por viaje: ${cap})<br>` +
                               `Viajes requeridos: <strong>${viajes} viajes</strong> (Función techo / ceil)`;
