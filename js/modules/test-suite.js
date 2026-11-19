@@ -181,39 +181,56 @@ export const tests = [
 /**
  * Ejecuta todas las pruebas y devuelve un reporte estructurado
  */
+
+/**
+ * Ejecutor mejorado de pruebas automatizadas
+ * Genera resultados individuales y resumen general.
+ */
 export function ejecutarSuiteCompleta() {
-  const resultados = tests.map(t => {
+
+  const resultados = tests.map(test => {
     try {
-      const res = t.ejecutar();
+      const resultado = test.ejecutar();
+
       return {
-        id: t.id,
-        nombre: t.nombre,
-        categoria: t.categoria,
-        esCascarita: t.esCascarita,
-        pass: res.pass,
-        detalle: res.detalle
+        id: test.id,
+        nombre: test.nombre,
+        categoria: test.categoria,
+        esCascarita: test.esCascarita,
+        pass: resultado.pass === true,
+        detalle: resultado.detalle || "Prueba ejecutada sin detalles."
       };
-    } catch (err) {
+
+    } catch (error) {
       return {
-        id: t.id,
-        nombre: t.nombre,
-        categoria: t.categoria,
-        esCascarita: t.esCascarita,
+        id: test.id,
+        nombre: test.nombre,
+        categoria: test.categoria,
+        esCascarita: test.esCascarita,
         pass: false,
-        detalle: `Excepcion de ejecucion: ${err.message}`
+        detalle: `Error detectado: ${error.message}`
       };
     }
   });
 
   const total = resultados.length;
-  const pasados = resultados.filter(r => r.pass).length;
+
+  const pasados = resultados.filter(
+    resultado => resultado.pass
+  ).length;
+
   const fallados = total - pasados;
+
+  const porcentajeAprobacion = total > 0
+    ? Number(((pasados / total) * 100).toFixed(2))
+    : 0;
 
   return {
     total,
     pasados,
     fallados,
-    todosAprobados: fallados === 0,
+    porcentajeAprobacion,
+    todosAprobados: total === 10 && fallados === 0,
     resultados
   };
 }
