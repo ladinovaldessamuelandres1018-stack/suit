@@ -42,6 +42,6 @@ Abrir http://localhost:8000 en el navegador.
 - Despliegue y UX/UI: 15 pts
 - Sustentacion Presencial: 15 pts
 
-## 6. Objetivo del Proyecto
+## 7. Objetivo del Proyecto
 
 El objetivo de este proyecto es desarrollar una aplicación web que permita resolver diferentes retos matemáticos y lógicos de manera interactiva. A través de sus módulos se busca aplicar conocimientos de programación, mejorar la capacidad de resolver problemas y fortalecer el manejo de JavaScript y el desarrollo web.
